@@ -13,7 +13,7 @@ export default async function ListPage() {
 
   return (
     <main style={{ padding: '2rem' }}>
-      <h1>Supabase Data (images tableç) </h1>
+      <h1>Supabase Data (images table) </h1>
       <ul>
         {data?.map((row: any) => (
           <li key={row.id}>
