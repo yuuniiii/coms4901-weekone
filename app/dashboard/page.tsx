@@ -3,40 +3,47 @@ import { createServerClient } from "@supabase/ssr"
 import { cookies } from "next/headers"
 
 export default async function DashboardPage() {
+  const cookieStore = await cookies()
+
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
       cookies: {
-        get: (name) => cookies().get(name)?.value,
+        get(name: string) {
+          return cookieStore.get(name)?.value
+        },
+        set(name: string, value: string, options: any) {
+          cookieStore.set({ name, value, ...options })
+        },
+        remove(name: string, options: any) {
+          cookieStore.set({ name, value: "", ...options })
+        },
       },
     }
   )
 
   const {
-    data: { user },
-  } = await supabase.auth.getUser()
+    data: { session },
+  } = await supabase.auth.getSession()
 
-  if (!user) {
+  if (!session) {
     redirect("/login")
   }
 
   return (
     <main
       style={{
-        minHeight: "100vh",
         backgroundColor: "black",
         color: "white",
+        height: "100vh",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        textAlign: "center",
-        padding: "2rem",
+        fontSize: "2rem",
       }}
     >
-      <h1 style={{ fontSize: "2rem", fontWeight: 500 }}>
-        congratulations! you have breached my defenses and reached... the secret...
-      </h1>
+      congratulations! you have breached my defenses and reached the secret
     </main>
   )
 }
