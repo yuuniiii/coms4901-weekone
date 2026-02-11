@@ -1,6 +1,6 @@
 "use client"
 
-import { supabase } from "../../lib/supabaseClient"
+import { supabase } from "../../lib/supabaseClient.ts"
 
 export default function LoginPage() {
   const signInWithGoogle = async () => {
