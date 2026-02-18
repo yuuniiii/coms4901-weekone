@@ -4,41 +4,60 @@ import { submitVote } from "@/app/actions/vote"
 export default async function FeedPage() {
   const supabase = await createClient()
 
-  // Example: get one image with caption
-  const { data: captions } = await supabase
+  const { data: captions, error } = await supabase
     .from("captions")
     .select(`
       id,
-      text,
+      content,
       image_id,
       images (*)
     `)
+    .eq("is_public", true)
     .limit(1)
+
+  if (error) {
+    return <div>Error loading captions</div>
+  }
 
   const caption = captions?.[0]
 
-  if (!caption) return <div>No captions found</div>
+  if (!caption) {
+    return <div>No captions found</div>
+  }
+
+  const image = caption.images?.[0]
 
   return (
     <main style={{ padding: "2rem" }}>
-      <img
-        src={caption.images?.[0]?.url}
-        style={{ width: "400px" }}
-      />
+      {image && (
+        <img
+          src={image.url}
+          alt="Caption image"
+          style={{ width: "400px", display: "block", marginBottom: "1rem" }}
+        />
+      )}
 
-      <p>{caption.text}</p>
+      <p style={{ fontSize: "1.5rem", marginBottom: "1rem" }}>
+        {caption.content}
+      </p>
 
-      <form action={async () => {
-        await submitVote(caption.id, 1)
-      }}>
-        <button type="submit">👍</button>
-      </form>
+      <div style={{ display: "flex", gap: "1rem" }}>
+        <form
+          action={async () => {
+            await submitVote(caption.id, 1)
+          }}
+        >
+          <button type="submit">👍 Upvote</button>
+        </form>
 
-      <form action={async () => {
-        await submitVote(caption.id, -1)
-      }}>
-        <button type="submit">👎</button>
-      </form>
+        <form
+          action={async () => {
+            await submitVote(caption.id, -1)
+          }}
+        >
+          <button type="submit">👎 Downvote</button>
+        </form>
+      </div>
     </main>
   )
 }
