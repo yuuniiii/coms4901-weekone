@@ -1,5 +1,7 @@
-export default async function FeedPage() {
-  console.log("SUPABASE URL:", process.env.NEXT_PUBLIC_SUPABASE_URL)
+import { createClient } from "@/lib/supabaseServerClient"
 
-  return <div>Testing feed page</div>
+export default async function FeedPage() {
+  const supabase = await createClient()
+
+  return <div>Client created successfully</div>
 }
