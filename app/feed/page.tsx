@@ -1,15 +1,60 @@
 import { createClient } from "@/lib/supabaseServerClient"
+import { submitVote } from "@/app/actions/vote"
 
 export default async function FeedPage() {
   const supabase = await createClient()
 
-  const { data, error } = await supabase
+  // Get one public caption
+  const { data: captions, error } = await supabase
     .from("captions")
-    .select("id, content, is_public")
+    .select("*")
+    .eq("is_public", true)
     .limit(1)
 
-  console.log("DATA:", data)
-  console.log("ERROR:", error)
+  if (error) {
+    return <div>Error loading captions</div>
+  }
 
-  return <div>Query ran</div>
+  const caption = captions?.[0]
+
+  if (!caption) {
+    return <div>No captions found</div>
+  }
+
+  // Fetch image separately
+  const { data: imageData } = await supabase
+    .from("images")
+    .select("url")
+    .eq("id", caption.image_id)
+    .single()
+
+  return (
+    <main style={{ padding: "2rem" }}>
+      {imageData && (
+        <img
+          src={imageData.url}
+          alt="Caption image"
+          style={{ width: "400px", marginBottom: "1rem" }}
+        />
+      )}
+
+      <p style={{ fontSize: "1.5rem", marginBottom: "1rem" }}>
+        {caption.content}
+      </p>
+
+      <div style={{ display: "flex", gap: "1rem" }}>
+        <form action={async () => {
+          await submitVote(caption.id, 1)
+        }}>
+          <button type="submit">👍 Upvote</button>
+        </form>
+
+        <form action={async () => {
+          await submitVote(caption.id, -1)
+        }}>
+          <button type="submit">👎 Downvote</button>
+        </form>
+      </div>
+    </main>
+  )
 }
