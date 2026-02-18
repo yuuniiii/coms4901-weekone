@@ -36,7 +36,7 @@ export default async function FeedPage() {
         <img
           src={imageData.url}
           alt="Caption image"
-          style={{ width: "400px", marginBottom: "1rem" }}
+          style={{ width: "450px", marginBottom: "1rem" }}
         />
       )}
 
