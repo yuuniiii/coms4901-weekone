@@ -3,5 +3,13 @@ import { createClient } from "@/lib/supabaseServerClient"
 export default async function FeedPage() {
   const supabase = await createClient()
 
-  return <div>Client created successfully</div>
+  const { data, error } = await supabase
+    .from("captions")
+    .select("id")
+    .limit(1)
+
+  console.log("DATA:", data)
+  console.log("ERROR:", error)
+
+  return <div>Query ran</div>
 }
