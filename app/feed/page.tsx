@@ -45,16 +45,12 @@ export default async function FeedPage() {
       </p>
 
       <div style={{ display: "flex", gap: "1rem" }}>
-        <form action={async () => {
-          await submitVote(caption.id, 1)
-        }}>
-          <button type="submit">👍 Upvote</button>
+        <form action={submitVote.bind(null, caption.id, 1)}>
+            <button type="submit">👍 Upvote</button>
         </form>
 
-        <form action={async () => {
-          await submitVote(caption.id, -1)
-        }}>
-          <button type="submit">👎 Downvote</button>
+        <form action={submitVote.bind(null, caption.id, -1)}>
+            <button type="submit">👎 Downvote</button>
         </form>
       </div>
     </main>
