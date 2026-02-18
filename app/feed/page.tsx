@@ -1,6 +1,7 @@
 import { createClient } from "@/lib/supabaseServerClient"
 import { redirect } from "next/navigation"
 import { submitVote } from "@/app/actions/vote"
+import { logout } from "@/app/actions/logout"
 
 export default async function FeedPage() {
   const supabase = await createClient()
@@ -41,6 +42,11 @@ export default async function FeedPage() {
 
   return (
     <main style={{ padding: "2rem" }}>
+
+        <form action={logout}>
+            <button type="submit">Log Out</button>
+        </form>
+        
       {imageData && (
         <img
           src={imageData.url}
