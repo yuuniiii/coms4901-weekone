@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation"
 import { createServerClient } from "@supabase/ssr"
 import { cookies } from "next/headers"
+import Link from "next/link"
 
 export default async function DashboardPage() {
   const cookieStore = await cookies()
@@ -38,12 +39,30 @@ export default async function DashboardPage() {
         color: "white",
         height: "100vh",
         display: "flex",
+        flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
         fontSize: "2rem",
+        gap: "2rem",
       }}
     >
-      congratulations! you have breached my defenses and reached the secret
+      <div>
+        congratulations! you have breached my defenses and reached the secret
+      </div>
+
+      <Link
+        href="/feed"
+        style={{
+          padding: "0.75rem 1.5rem",
+          backgroundColor: "white",
+          color: "black",
+          borderRadius: "8px",
+          textDecoration: "none",
+          fontSize: "1rem",
+        }}
+      >
+        Continue to Voting →
+      </Link>
     </main>
-  )
+)
 }
