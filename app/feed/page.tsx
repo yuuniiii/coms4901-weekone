@@ -1,8 +1,17 @@
 import { createClient } from "@/lib/supabaseServerClient"
+import { redirect } from "next/navigation"
 import { submitVote } from "@/app/actions/vote"
 
 export default async function FeedPage() {
   const supabase = await createClient()
+
+  const {
+    data: { session },
+  } = await supabase.auth.getSession()
+
+  if (!session) {
+    redirect("/login")  
+  }
 
   // Get one public caption
   const { data: captions, error } = await supabase
