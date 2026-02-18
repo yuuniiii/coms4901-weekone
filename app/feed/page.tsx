@@ -12,8 +12,10 @@ export default async function FeedPage() {
     .limit(1)
 
   if (error) {
-    return <div>Error loading captions</div>
+  console.error("CAPTIONS ERROR:", error)
+  return <div>{JSON.stringify(error)}</div>
   }
+
 
   const caption = captions?.[0]
 
