@@ -1,10 +1,29 @@
 "use server"
 
 import { revalidatePath } from "next/cache"
-import { createClient } from "@/lib/supabaseServerClient"
+import { createServerClient } from "@supabase/ssr"
+import { cookies } from "next/headers"
 
 export async function submitVote(captionId: string, voteValue: number) {
-  const supabase = await createClient()
+  const cookieStore = await cookies() // ✅ must await
+
+  const supabase = createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    {
+      cookies: {
+        get(name: string) {
+          return cookieStore.get(name)?.value
+        },
+        set(name: string, value: string, options: any) {
+          cookieStore.set({ name, value, ...options })
+        },
+        remove(name: string, options: any) {
+          cookieStore.set({ name, value: "", ...options })
+        },
+      },
+    }
+  )
 
   const {
     data: { user },
@@ -33,5 +52,5 @@ export async function submitVote(captionId: string, voteValue: number) {
     throw new Error("Vote failed")
   }
 
-  revalidatePath("/") // change if needed
+  revalidatePath("/feed") // ✅ revalidate correct route
 }
