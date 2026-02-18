@@ -6,12 +6,7 @@ export default async function FeedPage() {
 
   const { data: captions, error } = await supabase
     .from("captions")
-    .select(`
-      id,
-      content,
-      image_id,
-      images (*)
-    `)
+    .select("*")
     .eq("is_public", true)
     .limit(1)
 
