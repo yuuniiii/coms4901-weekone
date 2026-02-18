@@ -51,7 +51,7 @@ export async function submitVote(captionId: string, voteValue: number) {
 
   if (error) {
     console.error(error)
-    throw new Error("Vote failed")
+    return
   }
 
   revalidatePath("/feed")
