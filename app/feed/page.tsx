@@ -5,7 +5,7 @@ export default async function FeedPage() {
 
   const { data, error } = await supabase
     .from("captions")
-    .select("id")
+    .select("id, content")
     .limit(1)
 
   console.log("DATA:", data)
