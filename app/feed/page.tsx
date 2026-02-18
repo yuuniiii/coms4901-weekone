@@ -26,7 +26,7 @@ export default async function FeedPage() {
     .from("images")
     .select("url")
     .eq("id", caption.image_id)
-    .single()
+    .maybeSingle()
 
   return (
     <main style={{ padding: "2rem" }}>
