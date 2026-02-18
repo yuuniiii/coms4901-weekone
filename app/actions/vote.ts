@@ -35,6 +35,8 @@ export async function submitVote(captionId: string, voteValue: number) {
     throw new Error("Not authenticated")
   }
 
+  const now = new Date().toISOString()
+
   const { error } = await supabase
     .from("caption_votes")
     .upsert(
@@ -42,7 +44,8 @@ export async function submitVote(captionId: string, voteValue: number) {
         caption_id: captionId,
         profile_id: user.id,
         vote_value: voteValue,
-        modified_datetime_utc: new Date().toISOString(),
+        created_datetime_utc: now,
+        modified_datetime_utc: now,
       },
       {
         onConflict: "profile_id,caption_id",
