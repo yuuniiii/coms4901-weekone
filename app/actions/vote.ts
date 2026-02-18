@@ -5,7 +5,7 @@ import { createServerClient } from "@supabase/ssr"
 import { cookies } from "next/headers"
 
 export async function submitVote(captionId: string, voteValue: number) {
-  const cookieStore = await cookies() // ✅ must await
+  const cookieStore = await cookies()
 
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -26,8 +26,10 @@ export async function submitVote(captionId: string, voteValue: number) {
   )
 
   const {
-    data: { user },
-  } = await supabase.auth.getUser()
+    data: { session },
+  } = await supabase.auth.getSession()
+
+  const user = session?.user
 
   if (!user) {
     throw new Error("Not authenticated")
@@ -52,5 +54,5 @@ export async function submitVote(captionId: string, voteValue: number) {
     throw new Error("Vote failed")
   }
 
-  revalidatePath("/feed") // ✅ revalidate correct route
+  revalidatePath("/feed")
 }
