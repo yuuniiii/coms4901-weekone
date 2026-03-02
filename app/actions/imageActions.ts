@@ -13,11 +13,20 @@ export async function uploadAndGenerateCaptions(formData: FormData) {
 
     const supabase = await createClient();
     const {
+      data: { user },
+      error: userError,
+    } = await supabase.auth.getUser();
+
+    if (userError || !user) {
+      return { error: "Not authenticated. Please log in again." };
+    }
+
+    const {
       data: { session },
     } = await supabase.auth.getSession();
 
     if (!session?.access_token) {
-      return { error: "Not authenticated. Please log in again." };
+      return { error: "Missing access token." };
     }
 
     const jwt = session.access_token;
