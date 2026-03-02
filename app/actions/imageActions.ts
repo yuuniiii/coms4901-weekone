@@ -65,7 +65,7 @@ export async function uploadAndGenerateCaptions(formData: FormData) {
     const registerResponse = await fetch(`${API_BASE_URL}/pipeline/upload-image-from-url`, {
       method: "POST",
       headers: authHeaders,
-      body: JSON.stringify({ imageUrl: publicUrl }),
+      body: JSON.stringify({ imageUrl: publicUrl, isCommonUse: false, }),
     });
 
     if (!registerResponse.ok) {
