@@ -73,7 +73,11 @@ export async function uploadAndGenerateCaptions(formData: FormData) {
       return { error: "Failed to register image" };
     }
 
-    const { imageId } = await registerResponse.json();
+    const step3Data = await registerResponse.json();
+    console.log("Step 3 raw response:", step3Data);
+
+    const imageId = step3Data.imageId;
+    console.log("Extracted imageId:", imageId);
 
     // 4. POST /pipeline/generate-captions
     // We assume it takes imageId and returns { captions: string[] }
