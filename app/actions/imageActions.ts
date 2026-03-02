@@ -87,7 +87,7 @@ export async function uploadAndGenerateCaptions(formData: FormData) {
     if (!captionsResponse.ok) {
       const errorText = await captionsResponse.text();
       console.error("Step 4 failed:", errorText);
-      return { error: "Failed to generate captions" };
+      return { error: errorText };
     }
 
     const captions  = await captionsResponse.json();
