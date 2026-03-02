@@ -90,7 +90,7 @@ export async function uploadAndGenerateCaptions(formData: FormData) {
       return { error: "Failed to generate captions" };
     }
 
-    const { captions } = await captionsResponse.json();
+    const captions  = await captionsResponse.json();
 
     return { captions };
   } catch (error: any) {
