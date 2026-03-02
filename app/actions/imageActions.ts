@@ -81,6 +81,8 @@ export async function uploadAndGenerateCaptions(formData: FormData) {
 
     console.log("JWT length:", jwt.length);
 
+    await new Promise(resolve => setTimeout(resolve, 1000));
+
     // 4. POST /pipeline/generate-captions
     // We assume it takes imageId and returns { captions: string[] }
     const captionsResponse = await fetch(`${API_BASE_URL}/pipeline/generate-captions`, {
