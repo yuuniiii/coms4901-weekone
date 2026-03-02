@@ -79,6 +79,8 @@ export async function uploadAndGenerateCaptions(formData: FormData) {
     const imageId = step3Data.imageId;
     console.log("Extracted imageId:", imageId);
 
+    console.log("JWT length:", jwt.length);
+
     // 4. POST /pipeline/generate-captions
     // We assume it takes imageId and returns { captions: string[] }
     const captionsResponse = await fetch(`${API_BASE_URL}/pipeline/generate-captions`, {
