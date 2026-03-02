@@ -50,7 +50,7 @@ export async function uploadAndGenerateCaptions(formData: FormData) {
       headers: {
         "Content-Type": file.type,
       },
-      body: await file.arrayBuffer(),
+      body: file
     });
 
     if (!uploadResponse.ok) {
