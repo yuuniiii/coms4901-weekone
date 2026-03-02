@@ -43,7 +43,7 @@ export async function uploadAndGenerateCaptions(formData: FormData) {
       return { error: "Failed to generate upload URL" };
     }
 
-    const { presignedUrl, publicUrl } = await presignedResponse.json();
+    const { presignedUrl, cdnUrl } = await presignedResponse.json();
 
     // 2. PUT image bytes to returned presignedUrl (NO Authorization header)
     const uploadResponse = await fetch(presignedUrl, {
@@ -65,7 +65,7 @@ export async function uploadAndGenerateCaptions(formData: FormData) {
     const registerResponse = await fetch(`${API_BASE_URL}/pipeline/upload-image-from-url`, {
       method: "POST",
       headers: authHeaders,
-      body: JSON.stringify({ imageUrl: publicUrl, isCommonUse: false, }),
+      body: JSON.stringify({ imageUrl: cdnUrl, isCommonUse: false, }),
     });
 
     if (!registerResponse.ok) {
