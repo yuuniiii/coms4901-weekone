@@ -32,7 +32,6 @@ export async function uploadAndGenerateCaptions(formData: FormData) {
       method: "POST",
       headers: authHeaders,
       body: JSON.stringify({
-        filename: file.name,
         contentType: file.type,
       }),
     });
@@ -51,7 +50,7 @@ export async function uploadAndGenerateCaptions(formData: FormData) {
       headers: {
         "Content-Type": file.type,
       },
-      body: Buffer.from(await file.arrayBuffer()),
+      body: await file.arrayBuffer(),
     });
 
     if (!uploadResponse.ok) {
