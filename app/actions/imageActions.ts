@@ -84,7 +84,7 @@ export async function uploadAndGenerateCaptions(formData: FormData) {
     const captionsResponse = await fetch(`${API_BASE_URL}/pipeline/generate-captions`, {
       method: "POST",
       headers: authHeaders,
-      body: JSON.stringify({ imageId }),
+      body: JSON.stringify({ imageId, isCommonUse: false, }),
     });
 
     if (!captionsResponse.ok) {
