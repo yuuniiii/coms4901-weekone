@@ -31,5 +31,5 @@ export async function GET(request: Request) {
   }
 
   // ✅ ROUTES REDIRECT, THEY DO NOT RENDER JSX
-  return NextResponse.redirect(`${origin}/upload`)
+  return NextResponse.redirect(`${origin}/dashboard`)
 }

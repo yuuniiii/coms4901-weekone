@@ -73,10 +73,19 @@ export default function UploadForm() {
   };
 
   return (
-    <div style={{ maxWidth: "600px", margin: "2rem auto", padding: "1rem", border: "1px solid #ccc", borderRadius: "8px" }}>
+    <div style={{ maxWidth: "100%", margin: "0 auto" }}>
       <form onSubmit={handleUpload}>
-        <div style={{ marginBottom: "1rem" }}>
-          <label htmlFor="image-upload" style={{ display: "block", marginBottom: "0.5rem", fontWeight: "bold" }}>
+        <div style={{ marginBottom: "2rem" }}>
+          <label 
+            htmlFor="image-upload" 
+            style={{ 
+              display: "block", 
+              marginBottom: "1rem", 
+              fontWeight: "700",
+              fontSize: "1.1rem",
+              color: "#333"
+            }}
+          >
             Select Image
           </label>
           <input
@@ -85,21 +94,42 @@ export default function UploadForm() {
             accept={SUPPORTED_TYPES.join(",")}
             onChange={handleFileChange}
             disabled={loading}
+            style={{
+              width: "100%",
+              padding: "1rem",
+              border: "2px dashed #ddd",
+              borderRadius: "16px",
+              cursor: "pointer",
+            }}
           />
         </div>
 
         {preview && (
-          <div style={{ marginBottom: "1rem", textAlign: "center" }}>
+          <div style={{ marginBottom: "2rem", textAlign: "center" }}>
             <img
               src={preview}
               alt="Preview"
-              style={{ maxWidth: "100%", maxHeight: "300px", borderRadius: "4px", border: "1px solid #eee" }}
+              style={{ 
+                maxWidth: "100%", 
+                maxHeight: "400px", 
+                borderRadius: "20px", 
+                border: "1px solid #eee",
+                boxShadow: "0 10px 30px rgba(0,0,0,0.05)"
+              }}
             />
           </div>
         )}
 
         {error && (
-          <div style={{ color: "red", marginBottom: "1rem", padding: "0.5rem", backgroundColor: "#fff5f5", borderRadius: "4px", border: "1px solid #feb2b2" }}>
+          <div style={{ 
+            color: "#e53e3e", 
+            marginBottom: "1.5rem", 
+            padding: "1rem", 
+            backgroundColor: "#fff5f5", 
+            borderRadius: "12px", 
+            border: "1px solid #feb2b2",
+            fontWeight: "600"
+          }}>
             {error}
           </div>
         )}
@@ -109,13 +139,16 @@ export default function UploadForm() {
           disabled={!file || loading}
           style={{
             width: "100%",
-            padding: "0.75rem 1rem",
-            backgroundColor: loading ? "#ccc" : "#0070f3",
+            padding: "1.25rem 2rem",
+            backgroundColor: loading || !file ? "#ccc" : "#000",
             color: "white",
             border: "none",
-            borderRadius: "4px",
-            cursor: loading ? "not-allowed" : "pointer",
-            fontWeight: "bold",
+            borderRadius: "100px",
+            cursor: loading || !file ? "not-allowed" : "pointer",
+            fontWeight: "700",
+            fontSize: "1.1rem",
+            transition: "all 0.2s ease",
+            boxShadow: loading || !file ? "none" : "0 10px 25px rgba(0,0,0,0.1)",
           }}
         >
           {loading ? "Generating Captions..." : "Upload and Generate Captions"}
@@ -123,27 +156,37 @@ export default function UploadForm() {
       </form>
 
       {captions.length > 0 && (
-        <div style={{ marginTop: "2rem" }}>
-          <h3 style={{ marginBottom: "1rem", borderBottom: "2px solid #0070f3", paddingBottom: "0.5rem" }}>
+        <div style={{ marginTop: "3rem" }}>
+          <h3 style={{ 
+            marginBottom: "1.5rem", 
+            paddingBottom: "1rem",
+            fontSize: "1.5rem",
+            fontWeight: "800",
+            letterSpacing: "-0.02em",
+            borderBottom: "1px solid #eee"
+          }}>
             Generated Captions:
           </h3>
-          <ul style={{ listStyle: "none", padding: 0 }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
             {captions.map((caption, index) => (
-              <li
+              <div
                 key={caption.id || index}
                 style={{
-                  padding: "1rem",
-                  backgroundColor: "#f9f9f9",
-                  marginBottom: "0.75rem",
-                  borderRadius: "4px",
+                  padding: "1.25rem 1.5rem",
+                  backgroundColor: "#fff",
+                  borderRadius: "16px",
                   border: "1px solid #eee",
                   lineHeight: "1.5",
+                  fontSize: "1.1rem",
+                  fontWeight: "600",
+                  color: "#333",
+                  boxShadow: "0 4px 12px rgba(0,0,0,0.03)"
                 }}
               >
                 {caption.content}
-              </li>
+              </div>
             ))}
-          </ul>
+          </div>
         </div>
       )}
     </div>
