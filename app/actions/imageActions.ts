@@ -91,6 +91,7 @@ export async function uploadAndGenerateCaptions(formData: FormData) {
     const step3Data = await registerResponse.json();
     console.log("Step 3 raw response:", step3Data);
 
+    // Robust extraction in case the API returns 'id' or 'image_id' instead of 'imageId'
     const imageId = step3Data.imageId || step3Data.id || step3Data.image_id;
     console.log("Extracted imageId:", imageId);
 
@@ -103,11 +104,12 @@ export async function uploadAndGenerateCaptions(formData: FormData) {
     await new Promise(resolve => setTimeout(resolve, 1000));
 
     // 4. POST /pipeline/generate-captions
-    // We assume it takes image_id and returns { captions: string[] }
+    // Reverting to 'imageId' as per 400 error message. 
+    // The profile/user is automatically handled by the JWT in the headers.
     const captionsResponse = await fetch(`${API_BASE_URL}/pipeline/generate-captions`, {
       method: "POST",
       headers: authHeaders,
-      body: JSON.stringify({ image_id: imageId }),
+      body: JSON.stringify({ imageId }),
     });
 
     if (!captionsResponse.ok) {
@@ -117,7 +119,7 @@ export async function uploadAndGenerateCaptions(formData: FormData) {
     }
 
     const data = await captionsResponse.json();
-    // Some APIs return { captions: [...] }, others might return an array directly
+    // Normalize response to ensure it's an array for the UI
     const captionArray = Array.isArray(data) ? data : (data.captions || []);
 
     return { captions: captionArray };
