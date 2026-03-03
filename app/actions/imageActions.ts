@@ -51,7 +51,13 @@ export async function uploadAndGenerateCaptions(formData: FormData) {
       return { error: "Failed to generate upload URL" };
     }
 
-    const { presignedUrl, cdnUrl } = await presignedResponse.json();
+    const step1Data = await presignedResponse.json();
+    console.log("Step 1 response:", step1Data);
+
+    const presignedUrl = step1Data.presignedUrl;
+    const cdnUrl = step1Data.cdnUrl;
+
+    console.log("CDN URL:", cdnUrl);
 
     // 2. PUT image bytes to returned presignedUrl (NO Authorization header)
     const uploadResponse = await fetch(presignedUrl, {
@@ -85,19 +91,23 @@ export async function uploadAndGenerateCaptions(formData: FormData) {
     const step3Data = await registerResponse.json();
     console.log("Step 3 raw response:", step3Data);
 
-    const imageId = step3Data.imageId;
+    const imageId = step3Data.imageId || step3Data.id || step3Data.image_id;
     console.log("Extracted imageId:", imageId);
+
+    if (!imageId) {
+      return { error: "Failed to extract imageId from Step 3 response" };
+    }
 
     console.log("JWT length:", jwt.length);
 
     await new Promise(resolve => setTimeout(resolve, 1000));
 
     // 4. POST /pipeline/generate-captions
-    // We assume it takes imageId and returns { captions: string[] }
+    // We assume it takes image_id and returns { captions: string[] }
     const captionsResponse = await fetch(`${API_BASE_URL}/pipeline/generate-captions`, {
       method: "POST",
       headers: authHeaders,
-      body: JSON.stringify({ imageId, isCommonUse: false, }),
+      body: JSON.stringify({ image_id: imageId }),
     });
 
     if (!captionsResponse.ok) {
@@ -106,9 +116,11 @@ export async function uploadAndGenerateCaptions(formData: FormData) {
       return { error: errorText };
     }
 
-    const captions  = await captionsResponse.json();
+    const data = await captionsResponse.json();
+    // Some APIs return { captions: [...] }, others might return an array directly
+    const captionArray = Array.isArray(data) ? data : (data.captions || []);
 
-    return { captions };
+    return { captions: captionArray };
   } catch (error: any) {
     console.error("Pipeline error:", error);
     return { error: error.message || "An unexpected error occurred" };
