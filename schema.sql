@@ -1,7 +1,7 @@
 create table public.captions (
   id uuid not null default gen_random_uuid (),
-  created_datetime_utc timestamp with time zone not null default now(),
-  modified_datetime_utc timestamp with time zone null,
+  created_datetime_utc timestamp with time zone not null default CURRENT_TIMESTAMP,
+  modified_datetime_utc timestamp with time zone not null default CURRENT_TIMESTAMP,
   content character varying null,
   is_public boolean not null,
   profile_id uuid not null,
@@ -11,11 +11,15 @@ create table public.captions (
   caption_request_id bigint null,
   like_count bigint not null default '0'::bigint,
   llm_prompt_chain_id bigint null,
+  created_by_user_id uuid not null default auth.uid (),
+  modified_by_user_id uuid not null default auth.uid (),
   constraint captions_pkey primary key (id),
-  constraint captions_caption_request_id_fkey foreign KEY (caption_request_id) references caption_requests (id) on update CASCADE on delete CASCADE,
+  constraint captions_created_by_user_id_fkey foreign KEY (created_by_user_id) references profiles (id) on delete set null,
   constraint captions_humor_flavor_id_fkey foreign KEY (humor_flavor_id) references humor_flavors (id) on delete set null,
   constraint captions_image_id_fkey foreign KEY (image_id) references images (id) on delete CASCADE,
   constraint captions_llm_prompt_chain_id_fkey foreign KEY (llm_prompt_chain_id) references llm_prompt_chains (id) on delete CASCADE,
+  constraint captions_modified_by_user_id_fkey foreign KEY (modified_by_user_id) references profiles (id) on delete set null,
+  constraint captions_caption_request_id_fkey foreign KEY (caption_request_id) references caption_requests (id) on update CASCADE on delete CASCADE,
   constraint captions_profile_id_fkey foreign KEY (profile_id) references profiles (id) on delete set null
 ) TABLESPACE pg_default;
 
@@ -25,12 +29,25 @@ create index IF not exists idx_captions_like_count_desc_id on public.captions us
 
 create index IF not exists captions_image_id_idx on public.captions using btree (image_id) TABLESPACE pg_default;
 
+create trigger set_created_and_modified_by_user_ids_before_write BEFORE INSERT
+or
+update on captions for EACH row
+execute FUNCTION set_created_and_modified_by_user_ids ();
+
+create trigger set_modified_datetime_utc_before_update BEFORE
+update on captions for EACH row
+execute FUNCTION set_modified_datetime_utc ();
+
+
+
+
+
 
 
 create table public.images (
   id uuid not null default gen_random_uuid (),
   created_datetime_utc timestamp with time zone not null default now(),
-  modified_datetime_utc timestamp with time zone null,
+  modified_datetime_utc timestamp with time zone not null default now(),
   url character varying null,
   is_common_use boolean null default false,
   profile_id uuid null default auth.uid (),
@@ -39,7 +56,11 @@ create table public.images (
   image_description text null,
   celebrity_recognition text null,
   embedding public.vector null,
+  created_by_user_id uuid not null default auth.uid (),
+  modified_by_user_id uuid not null default auth.uid (),
   constraint images_pkey primary key (id),
+  constraint images_created_by_user_id_fkey foreign KEY (created_by_user_id) references profiles (id) on delete set null,
+  constraint images_modified_by_user_id_fkey foreign KEY (modified_by_user_id) references profiles (id) on delete set null,
   constraint images_profile_id_fkey foreign KEY (profile_id) references profiles (id) on delete set null
 ) TABLESPACE pg_default;
 
@@ -53,23 +74,48 @@ where
 
 create index IF not exists idx_images_profile_id on public.images using btree (profile_id) TABLESPACE pg_default;
 
+create trigger set_created_and_modified_by_user_ids_before_write BEFORE INSERT
+or
+update on images for EACH row
+execute FUNCTION set_created_and_modified_by_user_ids ();
+
+create trigger set_modified_datetime_utc_before_update BEFORE
+update on images for EACH row
+execute FUNCTION set_modified_datetime_utc ();
+
+
+
+
 
 
 
 
 create table public.profiles (
   id uuid not null,
-  created_datetime_utc timestamp with time zone null default now(),
-  modified_datetime_utc timestamp with time zone null,
+  created_datetime_utc timestamp with time zone not null default now(),
+  modified_datetime_utc timestamp with time zone not null default now(),
   first_name character varying null,
   last_name character varying null,
   email text null,
   is_superadmin boolean not null default false,
   is_in_study boolean not null default false,
   is_matrix_admin boolean not null default false,
+  created_by_user_id uuid not null default auth.uid (),
+  modified_by_user_id uuid not null default auth.uid (),
   constraint profiles_pkey primary key (id),
-  constraint profiles_id_fkey foreign KEY (id) references auth.users (id) on delete CASCADE
+  constraint profiles_created_by_user_id_fkey foreign KEY (created_by_user_id) references profiles (id) on delete set null,
+  constraint profiles_id_fkey foreign KEY (id) references auth.users (id) on delete CASCADE,
+  constraint profiles_modified_by_user_id_fkey foreign KEY (modified_by_user_id) references profiles (id) on delete set null
 ) TABLESPACE pg_default;
+
+create trigger set_created_and_modified_by_user_ids_before_write BEFORE INSERT
+or
+update on profiles for EACH row
+execute FUNCTION set_created_and_modified_by_user_ids ();
+
+create trigger set_modified_datetime_utc_before_update BEFORE
+update on profiles for EACH row
+execute FUNCTION set_modified_datetime_utc ();
 
 
 
@@ -81,9 +127,25 @@ create table public.humor_flavor_mix (
   created_datetime_utc timestamp with time zone not null default now(),
   humor_flavor_id bigint not null,
   caption_count smallint not null,
+  created_by_user_id uuid not null default auth.uid (),
+  modified_by_user_id uuid not null default auth.uid (),
+  modified_datetime_utc timestamp with time zone not null default now(),
   constraint humor_flavor_mix_pkey primary key (id),
-  constraint humor_flavor_mix_humor_flavor_id_fkey foreign KEY (humor_flavor_id) references humor_flavors (id) on delete CASCADE
+  constraint humor_flavor_mix_created_by_user_id_fkey foreign KEY (created_by_user_id) references profiles (id) on delete set null,
+  constraint humor_flavor_mix_humor_flavor_id_fkey foreign KEY (humor_flavor_id) references humor_flavors (id) on delete CASCADE,
+  constraint humor_flavor_mix_modified_by_user_id_fkey foreign KEY (modified_by_user_id) references profiles (id) on delete set null
 ) TABLESPACE pg_default;
+
+create trigger set_created_and_modified_by_user_ids_before_write BEFORE INSERT
+or
+update on humor_flavor_mix for EACH row
+execute FUNCTION set_created_and_modified_by_user_ids ();
+
+create trigger set_modified_datetime_utc_before_update BEFORE
+update on humor_flavor_mix for EACH row
+execute FUNCTION set_modified_datetime_utc ();
+
+
 
 
 
@@ -94,7 +156,21 @@ create table public.caption_requests (
   created_datetime_utc timestamp with time zone not null default now(),
   profile_id uuid not null,
   image_id uuid not null,
+  created_by_user_id uuid not null default auth.uid (),
+  modified_by_user_id uuid not null default auth.uid (),
+  modified_datetime_utc timestamp with time zone not null default now(),
   constraint caption_requests_pkey primary key (id),
+  constraint caption_requests_created_by_user_id_fkey foreign KEY (created_by_user_id) references profiles (id) on delete set null,
   constraint caption_requests_image_id_fkey foreign KEY (image_id) references images (id) on delete CASCADE,
+  constraint caption_requests_modified_by_user_id_fkey foreign KEY (modified_by_user_id) references profiles (id) on delete set null,
   constraint caption_requests_profile_id_fkey foreign KEY (profile_id) references profiles (id) on update CASCADE
 ) TABLESPACE pg_default;
+
+create trigger set_created_and_modified_by_user_ids_before_write BEFORE INSERT
+or
+update on caption_requests for EACH row
+execute FUNCTION set_created_and_modified_by_user_ids ();
+
+create trigger set_modified_datetime_utc_before_update BEFORE
+update on caption_requests for EACH row
+execute FUNCTION set_modified_datetime_utc ();
