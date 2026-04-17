@@ -23,28 +23,28 @@ export default async function UploadPage() {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    backgroundColor: "#ffffff",
+    backgroundColor: "#000",
     zIndex: 10,
-    borderBottom: "1px solid #eee",
+    borderBottom: "1px solid #222",
   }
 
   const navLinkStyle = {
     padding: "0.75rem 1.5rem",
-    backgroundColor: "#000",
-    color: "#fff",
+    backgroundColor: "#fff",
+    color: "#000",
     borderRadius: "100px",
     textDecoration: "none",
     fontSize: "0.9rem",
     fontWeight: "700",
     transition: "all 0.2s ease",
-    boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+    boxShadow: "0 0 15px rgba(45, 212, 191, 0.4)",
   }
 
   const logoutButtonStyle = {
     padding: "0.75rem 1.5rem",
     backgroundColor: "transparent",
-    color: "#000",
-    border: "1px solid #ddd",
+    color: "#fff",
+    border: "1px solid #444",
     borderRadius: "100px",
     cursor: "pointer",
     fontSize: "0.9rem",
@@ -55,14 +55,14 @@ export default async function UploadPage() {
   return (
     <main
       style={{
-        backgroundColor: "#ffffff",
-        color: "#000",
+        backgroundColor: "#000",
+        color: "#fff",
         minHeight: "100vh",
         padding: "8rem 2rem",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        fontFamily: "sans-serif",
+        fontFamily: "var(--font-body)",
       }}
     >
       <div style={headerStyle}>
@@ -79,7 +79,9 @@ export default async function UploadPage() {
           position: "absolute", 
           left: "50%", 
           transform: "translateX(-50%)",
-          letterSpacing: "-0.02em"
+          letterSpacing: "-0.02em",
+          fontFamily: "var(--font-display)",
+          color: "#2dd4bf"
         }}>
           upload
         </h1>
@@ -97,12 +99,12 @@ export default async function UploadPage() {
         style={{
           maxWidth: "600px",
           width: "100%",
-          backgroundColor: "#fff",
+          backgroundColor: "#0d0d0d",
           borderRadius: "24px",
           padding: "3rem 2rem",
-          border: "1px solid #eee",
+          border: "1px solid #222",
           marginTop: "2rem",
-          boxShadow: "0 20px 40px rgba(0,0,0,0.06)",
+          boxShadow: "0 0 40px rgba(45, 212, 191, 0.15)",
         }}
       >
         <h2 style={{ 
@@ -110,7 +112,9 @@ export default async function UploadPage() {
           marginBottom: "2.5rem", 
           fontSize: "2rem", 
           fontWeight: "800",
-          letterSpacing: "-0.02em"
+          letterSpacing: "-0.02em",
+          fontFamily: "var(--font-display)",
+          color: "#fff"
         }}>
           make your own memes
         </h2>

@@ -35,16 +35,14 @@ export default async function DashboardPage() {
 
   const upvotedItems = upvotedData?.map((item: any) => item.caption) || []
 
-  const linkColor = "#3b82f6"
-
   return (
     <main
       style={{
-        backgroundColor: "#ffffff",
-        color: "#000000",
+        backgroundColor: "#000",
+        color: "#fff",
         minHeight: "100vh",
         padding: "8rem 2rem 2rem 2rem",
-        fontFamily: "sans-serif",
+        fontFamily: "var(--font-body)",
       }}
     >
       {/* Header Area */}
@@ -58,9 +56,9 @@ export default async function DashboardPage() {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          backgroundColor: "#ffffff",
+          backgroundColor: "#000",
           zIndex: 10,
-          borderBottom: "1px solid #eee",
+          borderBottom: "1px solid #222",
         }}
       >
         <div style={{ display: "flex", gap: "1rem", flex: 1 }}>
@@ -68,14 +66,14 @@ export default async function DashboardPage() {
             href="/feed"
             style={{
               padding: "0.75rem 1.5rem",
-              backgroundColor: "#000",
-              color: "#fff",
+              backgroundColor: "#a78bfa",
+              color: "#000",
               borderRadius: "100px",
               textDecoration: "none",
               fontSize: "0.9rem",
               fontWeight: "700",
               transition: "all 0.2s ease",
-              boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+              boxShadow: "0 0 15px rgba(167, 139, 250, 0.4)",
             }}
           >
             browse public gallery
@@ -84,14 +82,14 @@ export default async function DashboardPage() {
             href="/upload"
             style={{
               padding: "0.75rem 1.5rem",
-              backgroundColor: "#000",
-              color: "#fff",
+              backgroundColor: "#2dd4bf",
+              color: "#000",
               borderRadius: "100px",
               textDecoration: "none",
               fontSize: "0.9rem",
               fontWeight: "700",
               transition: "all 0.2s ease",
-              boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+              boxShadow: "0 0 15px rgba(45, 212, 191, 0.4)",
             }}
           >
             make your own memes
@@ -105,7 +103,9 @@ export default async function DashboardPage() {
           position: "absolute", 
           left: "50%", 
           transform: "translateX(-50%)",
-          letterSpacing: "-0.02em"
+          letterSpacing: "-0.02em",
+          fontFamily: "var(--font-display)",
+          color: "#fff"
         }}>
           my humor gallery
         </h1>
@@ -117,8 +117,8 @@ export default async function DashboardPage() {
               style={{
                 padding: "0.75rem 1.5rem",
                 backgroundColor: "transparent",
-                color: "#000",
-                border: "1px solid #ddd",
+                color: "#fff",
+                border: "1px solid #444",
                 borderRadius: "100px",
                 cursor: "pointer",
                 fontSize: "0.9rem",
@@ -134,18 +134,18 @@ export default async function DashboardPage() {
 
       {upvotedItems.length === 0 ? (
         <div style={{ marginTop: "2rem", textAlign: "center" }}>
-          <p style={{ fontSize: "1.1rem", color: "#666" }}>
+          <p style={{ fontSize: "1.1rem", color: "#888" }}>
             seems like you haven’t found anything funny.{" "}
             <Link
               href="/feed"
-              style={{ color: "#000", fontWeight: "700", textDecoration: "underline" }}
+              style={{ color: "#a78bfa", fontWeight: "700", textDecoration: "underline" }}
             >
               browse the public gallery
             </Link>{" "}
             or{" "}
             <Link
               href="/upload"
-              style={{ color: "#000", fontWeight: "700", textDecoration: "underline" }}
+              style={{ color: "#2dd4bf", fontWeight: "700", textDecoration: "underline" }}
             >
               make your own
             </Link>
@@ -164,13 +164,13 @@ export default async function DashboardPage() {
             <div
               key={item.id}
               style={{
-                backgroundColor: "#fff",
+                backgroundColor: "#0d0d0d",
                 borderRadius: "20px",
                 overflow: "hidden",
-                border: "1px solid #eee",
+                border: "1px solid #222",
                 display: "flex",
                 flexDirection: "column",
-                boxShadow: "0 10px 30px rgba(0,0,0,0.05)",
+                boxShadow: "0 0 20px rgba(0,0,0,0.5)",
                 transition: "transform 0.2s ease",
               }}
             >
@@ -188,7 +188,14 @@ export default async function DashboardPage() {
                 </div>
               )}
               <div style={{ padding: "1.5rem", textAlign: "center" }}>
-                <p style={{ margin: 0, fontSize: "1.1rem", fontWeight: "600", color: "#333", lineHeight: "1.4" }}>
+                <p style={{ 
+                  margin: 0, 
+                  fontSize: "1.1rem", 
+                  fontWeight: "700", 
+                  color: "#fbbf24", 
+                  lineHeight: "1.4",
+                  fontFamily: "var(--font-display)"
+                }}>
                   {item.content}
                 </p>
               </div>

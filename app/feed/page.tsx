@@ -51,28 +51,28 @@ export default async function FeedPage() {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    backgroundColor: "#ffffff",
+    backgroundColor: "#000",
     zIndex: 10,
-    borderBottom: "1px solid #eee",
+    borderBottom: "1px solid #222",
   }
 
   const navLinkStyle = {
     padding: "0.75rem 1.5rem",
-    backgroundColor: "#000",
-    color: "#fff",
+    backgroundColor: "#fff",
+    color: "#000",
     borderRadius: "100px",
     textDecoration: "none",
     fontSize: "0.9rem",
     fontWeight: "700",
     transition: "all 0.2s ease",
-    boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+    boxShadow: "0 0 15px rgba(167, 139, 250, 0.4)",
   }
 
   const logoutButtonStyle = {
     padding: "0.75rem 1.5rem",
     backgroundColor: "transparent",
-    color: "#000",
-    border: "1px solid #ddd",
+    color: "#fff",
+    border: "1px solid #444",
     borderRadius: "100px",
     cursor: "pointer",
     fontSize: "0.9rem",
@@ -84,14 +84,14 @@ export default async function FeedPage() {
     return (
       <main
         style={{
-          backgroundColor: "#ffffff",
-          color: "#000",
+          backgroundColor: "#000",
+          color: "#fff",
           minHeight: "100vh",
           padding: "8rem 2rem",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          fontFamily: "sans-serif",
+          fontFamily: "var(--font-body)",
         }}
       >
         <div style={headerStyle}>
@@ -108,7 +108,9 @@ export default async function FeedPage() {
             position: "absolute", 
             left: "50%", 
             transform: "translateX(-50%)",
-            letterSpacing: "-0.02em"
+            letterSpacing: "-0.02em",
+            fontFamily: "var(--font-display)",
+            color: "#a78bfa"
           }}>
             feed
           </h1>
@@ -123,8 +125,8 @@ export default async function FeedPage() {
         </div>
 
         <div style={{ textAlign: "center", marginTop: "4rem" }}>
-          <h1 style={{ fontSize: "2.5rem", fontWeight: "800", marginBottom: "1rem" }}>You've seen everything!</h1>
-          <p style={{ color: "#666", fontSize: "1.2rem" }}>Check back later for more captions.</p>
+          <h1 style={{ fontSize: "2.5rem", fontWeight: "800", marginBottom: "1rem", fontFamily: "var(--font-display)" }}>You've seen everything!</h1>
+          <p style={{ color: "#888", fontSize: "1.2rem" }}>Check back later for more captions.</p>
           <Link href="/dashboard" style={{ ...navLinkStyle, display: "inline-block", marginTop: "2rem" }}>
             Go to My Gallery
           </Link>
@@ -143,14 +145,14 @@ export default async function FeedPage() {
   return (
     <main
       style={{
-        backgroundColor: "#ffffff",
-        color: "#000",
+        backgroundColor: "#000",
+        color: "#fff",
         minHeight: "100vh",
         padding: "8rem 2rem",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        fontFamily: "sans-serif",
+        fontFamily: "var(--font-body)",
       }}
     >
       <div style={headerStyle}>
@@ -167,7 +169,9 @@ export default async function FeedPage() {
           position: "absolute", 
           left: "50%", 
           transform: "translateX(-50%)",
-          letterSpacing: "-0.02em"
+          letterSpacing: "-0.02em",
+          fontFamily: "var(--font-display)",
+          color: "#a78bfa"
         }}>
           feed
         </h1>
@@ -185,14 +189,14 @@ export default async function FeedPage() {
         style={{
           maxWidth: "500px",
           width: "100%",
-          backgroundColor: "#fff",
+          backgroundColor: "#0d0d0d",
           borderRadius: "24px",
           overflow: "hidden",
-          border: "1px solid #eee",
+          border: "1px solid #222",
           display: "flex",
           flexDirection: "column",
           marginTop: "2rem",
-          boxShadow: "0 20px 40px rgba(0,0,0,0.08)",
+          boxShadow: "0 0 40px rgba(167, 139, 250, 0.15)",
         }}
       >
         {imageData && (
@@ -216,7 +220,9 @@ export default async function FeedPage() {
             marginBottom: "2rem", 
             textAlign: "center",
             lineHeight: "1.3",
-            letterSpacing: "-0.01em"
+            letterSpacing: "-0.01em",
+            fontFamily: "var(--font-display)",
+            color: "#2dd4bf"
           }}>
             {caption.content}
           </p>
@@ -227,15 +233,15 @@ export default async function FeedPage() {
                 type="submit"
                 style={{
                   padding: "1rem 2rem",
-                  backgroundColor: "#000",
-                  color: "#fff",
+                  backgroundColor: "#a78bfa",
+                  color: "#000",
                   border: "none",
                   borderRadius: "100px",
                   cursor: "pointer",
                   fontSize: "1rem",
                   fontWeight: "700",
                   transition: "all 0.2s ease",
-                  boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+                  boxShadow: "0 0 15px rgba(167, 139, 250, 0.4)",
                 }}
               >
                 Save to my gallery
@@ -247,9 +253,9 @@ export default async function FeedPage() {
                 type="submit"
                 style={{
                   padding: "1rem 2rem",
-                  backgroundColor: "#fff",
-                  color: "#000",
-                  border: "1px solid #ddd",
+                  backgroundColor: "transparent",
+                  color: "#fff",
+                  border: "1px solid #444",
                   borderRadius: "100px",
                   cursor: "pointer",
                   fontSize: "1rem",

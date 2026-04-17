@@ -83,7 +83,7 @@ export default function UploadForm() {
               marginBottom: "1rem", 
               fontWeight: "700",
               fontSize: "1.1rem",
-              color: "#333"
+              color: "#aaa"
             }}
           >
             Select Image
@@ -97,9 +97,11 @@ export default function UploadForm() {
             style={{
               width: "100%",
               padding: "1rem",
-              border: "2px dashed #ddd",
+              border: "2px dashed #444",
               borderRadius: "16px",
               cursor: "pointer",
+              backgroundColor: "#111",
+              color: "#fff",
             }}
           />
         </div>
@@ -113,8 +115,8 @@ export default function UploadForm() {
                 maxWidth: "100%", 
                 maxHeight: "400px", 
                 borderRadius: "20px", 
-                border: "1px solid #eee",
-                boxShadow: "0 10px 30px rgba(0,0,0,0.05)"
+                border: "1px solid #333",
+                boxShadow: "0 0 30px rgba(45, 212, 191, 0.2)"
               }}
             />
           </div>
@@ -122,12 +124,12 @@ export default function UploadForm() {
 
         {error && (
           <div style={{ 
-            color: "#e53e3e", 
+            color: "#fb7185", 
             marginBottom: "1.5rem", 
             padding: "1rem", 
-            backgroundColor: "#fff5f5", 
+            backgroundColor: "rgba(251, 113, 133, 0.1)", 
             borderRadius: "12px", 
-            border: "1px solid #feb2b2",
+            border: "1px solid rgba(251, 113, 133, 0.2)",
             fontWeight: "600"
           }}>
             {error}
@@ -140,15 +142,15 @@ export default function UploadForm() {
           style={{
             width: "100%",
             padding: "1.25rem 2rem",
-            backgroundColor: loading || !file ? "#ccc" : "#000",
-            color: "white",
+            backgroundColor: loading || !file ? "#333" : "#2dd4bf",
+            color: loading || !file ? "#666" : "#000",
             border: "none",
             borderRadius: "100px",
             cursor: loading || !file ? "not-allowed" : "pointer",
             fontWeight: "700",
             fontSize: "1.1rem",
             transition: "all 0.2s ease",
-            boxShadow: loading || !file ? "none" : "0 10px 25px rgba(0,0,0,0.1)",
+            boxShadow: loading || !file ? "none" : "0 0 20px rgba(45, 212, 191, 0.4)",
           }}
         >
           {loading ? "Generating Captions..." : "Upload and Generate Captions"}
@@ -163,7 +165,9 @@ export default function UploadForm() {
             fontSize: "1.5rem",
             fontWeight: "800",
             letterSpacing: "-0.02em",
-            borderBottom: "1px solid #eee"
+            borderBottom: "1px solid #222",
+            color: "#fff",
+            fontFamily: "var(--font-display)"
           }}>
             Generated Captions:
           </h3>
@@ -173,14 +177,15 @@ export default function UploadForm() {
                 key={caption.id || index}
                 style={{
                   padding: "1.25rem 1.5rem",
-                  backgroundColor: "#fff",
+                  backgroundColor: "#0d0d0d",
                   borderRadius: "16px",
-                  border: "1px solid #eee",
+                  border: "1px solid #222",
                   lineHeight: "1.5",
-                  fontSize: "1.1rem",
-                  fontWeight: "600",
-                  color: "#333",
-                  boxShadow: "0 4px 12px rgba(0,0,0,0.03)"
+                  fontSize: "1.2rem",
+                  fontWeight: "700",
+                  color: "#fbbf24",
+                  fontFamily: "var(--font-display)",
+                  boxShadow: "0 0 15px rgba(251, 191, 36, 0.1)"
                 }}
               >
                 {caption.content}
