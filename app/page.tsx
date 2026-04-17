@@ -30,7 +30,7 @@ export default function Home() {
         <h1 style={{ 
           fontSize: "clamp(3rem, 10vw, 5rem)", 
           fontWeight: "900", 
-          letterSpacing: "-0.04em", 
+          letterSpacing: "-0.01em", 
           margin: 0,
           lineHeight: "1.1",
           color: "#ffffff"
@@ -51,7 +51,7 @@ export default function Home() {
         onClick={signInWithGoogle}
         style={{
           padding: "1.25rem 3rem",
-          backgroundColor: "#d54368",
+          backgroundColor: "#f55719",
           color: "#fff",
           borderRadius: "100px",
           cursor: "pointer",

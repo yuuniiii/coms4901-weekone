@@ -164,7 +164,7 @@ export default function UploadForm() {
             paddingBottom: "1rem",
             fontSize: "1.5rem",
             fontWeight: "800",
-            letterSpacing: "-0.02em",
+            letterSpacing: "0.01em",
             borderBottom: "1px solid #222",
             color: "#fff",
             fontFamily: "var(--font-display)"

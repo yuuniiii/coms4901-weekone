@@ -50,6 +50,7 @@ a {
 /* Element Defaults */
 h1, h2, h3, h4, h5, h6 { 
   font-family: var(--font-display); 
+  letter-spacing: 0.05em;
   color: var(--color-text-primary); 
 }
 
@@ -59,6 +60,7 @@ button, [role="button"] {
 
 caption, figcaption, label { 
   font-family: var(--font-display); 
+  letter-spacing: 0.05em;
 }
 
 small, .meta, .timestamp, .hint { 
@@ -68,7 +70,7 @@ small, .meta, .timestamp, .hint {
 }
 
 /* Utility Classes */
-.font-display { font-family: var(--font-display); }
+.font-display { font-family: var(--font-display); letter-spacing: 0.05em; }
 .font-ui      { font-family: var(--font-ui); }
 .font-body    { font-family: var(--font-body); }
 

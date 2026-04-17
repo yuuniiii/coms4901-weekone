@@ -58,14 +58,14 @@ export default async function FeedPage() {
 
   const navLinkStyle = {
     padding: "0.75rem 1.5rem",
-    backgroundColor: "var(--color-accent-purple)",
+    backgroundColor: "#f55719",
     color: "#fff",
     borderRadius: "100px",
     textDecoration: "none",
     fontSize: "0.9rem",
     fontWeight: "700",
     transition: "all 0.2s ease",
-    boxShadow: "0 0 15px rgba(167, 139, 250, 0.4)",
+    boxShadow: "0 0 15px rgba(255, 200, 0, 0.4)",
   }
 
   const logoutButtonStyle = {
@@ -97,7 +97,7 @@ export default async function FeedPage() {
         <div style={headerStyle}>
           <div style={{ flex: 1 }}>
             <Link href="/dashboard" style={navLinkStyle}>
-              back to user home
+              Back to User Home
             </Link>
           </div>
           
@@ -108,11 +108,11 @@ export default async function FeedPage() {
             position: "absolute", 
             left: "50%", 
             transform: "translateX(-50%)",
-            letterSpacing: "-0.02em",
+            letterSpacing: "0.01em",
             fontFamily: "var(--font-display)",
             color: "#fff"
           }}>
-            feed
+            Feed
           </h1>
 
           <div style={{ flex: 1, display: "flex", justifyContent: "flex-end" }}>
@@ -153,12 +153,13 @@ export default async function FeedPage() {
         flexDirection: "column",
         alignItems: "center",
         fontFamily: "var(--font-body)",
+        letterSpacing: "0.01em",
       }}
     >
       <div style={headerStyle}>
         <div style={{ flex: 1 }}>
           <Link href="/dashboard" style={navLinkStyle}>
-            back to user home
+            Back to user home
           </Link>
         </div>
         
@@ -169,13 +170,12 @@ export default async function FeedPage() {
           position: "absolute", 
           left: "50%", 
           transform: "translateX(-50%)",
-          letterSpacing: "-0.02em",
+          letterSpacing: "0.09em",
           fontFamily: "var(--font-display)",
           color: "#fff"
         }}>
-          feed
+          Feed
         </h1>
-
         <div style={{ flex: 1, display: "flex", justifyContent: "flex-end" }}>
           <form action={logout}>
             <button type="submit" style={logoutButtonStyle}>
@@ -220,7 +220,7 @@ export default async function FeedPage() {
             marginBottom: "2rem", 
             textAlign: "center",
             lineHeight: "1.3",
-            letterSpacing: "-0.01em",
+            letterSpacing: "0.06em",
             fontFamily: "var(--font-display)",
             color: "#fff"
           }}>
@@ -233,7 +233,7 @@ export default async function FeedPage() {
                 type="submit"
                 style={{
                   padding: "1rem 2rem",
-                  backgroundColor: "#a78bfa",
+                  backgroundColor: "#f55719",
                   color: "#fff",
                   border: "none",
                   borderRadius: "100px",
@@ -241,7 +241,7 @@ export default async function FeedPage() {
                   fontSize: "1rem",
                   fontWeight: "700",
                   transition: "all 0.2s ease",
-                  boxShadow: "0 0 15px rgba(167, 139, 250, 0.4)",
+                  boxShadow: "0 0 15px rgba(254, 224, 106, 0.4)",
                 }}
               >
                 Save to my gallery

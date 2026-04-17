@@ -66,7 +66,7 @@ export default async function DashboardPage() {
             href="/feed"
             style={{
               padding: "0.75rem 1.5rem",
-              backgroundColor: "#cf0847",
+              backgroundColor: "#f55719",
               color: "#fff",
               borderRadius: "100px",
               textDecoration: "none",
@@ -76,13 +76,13 @@ export default async function DashboardPage() {
               boxShadow: "0 0 15px rgba(167, 139, 250, 0.4)",
             }}
           >
-            Browse Public Gallery
+            Browse public gallery
           </Link>
           <Link
             href="/upload"
             style={{
               padding: "0.75rem 1.5rem",
-              backgroundColor: "#cf0847",
+              backgroundColor: "#f55719",
               color: "#fff",
               borderRadius: "100px",
               textDecoration: "none",
@@ -92,7 +92,7 @@ export default async function DashboardPage() {
               boxShadow: "0 0 15px rgba(45, 212, 191, 0.4)",
             }}
           >
-            Make Your Own Memes
+            Make your own memes
           </Link>
         </div>
 
@@ -103,7 +103,7 @@ export default async function DashboardPage() {
           position: "absolute", 
           left: "50%", 
           transform: "translateX(-50%)",
-          letterSpacing: "-0.02em",
+          letterSpacing: "0.09em",
           fontFamily: "var(--font-display)",
           color: "#fff"
         }}>
@@ -194,6 +194,7 @@ export default async function DashboardPage() {
                   fontWeight: "700", 
                   color: "#fff", 
                   lineHeight: "1.4",
+                  letterSpacing: "0.08em",
                   fontFamily: "var(--font-display)"
                 }}>
                   {item.content}

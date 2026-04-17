@@ -30,7 +30,7 @@ export default async function UploadPage() {
 
   const navLinkStyle = {
     padding: "0.75rem 1.5rem",
-    backgroundColor: "var(--color-accent-teal)",
+    backgroundColor: "#f55719",
     color: "#fff",
     borderRadius: "100px",
     textDecoration: "none",
@@ -68,7 +68,7 @@ export default async function UploadPage() {
       <div style={headerStyle}>
         <div style={{ flex: 1 }}>
           <Link href="/dashboard" style={navLinkStyle}>
-            back to user home
+            Back to user home
           </Link>
         </div>
         
@@ -79,11 +79,11 @@ export default async function UploadPage() {
           position: "absolute", 
           left: "50%", 
           transform: "translateX(-50%)",
-          letterSpacing: "-0.02em",
+          letterSpacing: "0.01em",
           fontFamily: "var(--font-display)",
           color: "#fff"
         }}>
-          upload
+          Upload
         </h1>
 
         <div style={{ flex: 1, display: "flex", justifyContent: "flex-end" }}>
@@ -112,11 +112,11 @@ export default async function UploadPage() {
           marginBottom: "2.5rem", 
           fontSize: "2rem", 
           fontWeight: "800",
-          letterSpacing: "-0.02em",
+          letterSpacing: "0.01em",
           fontFamily: "var(--font-display)",
           color: "#fff"
         }}>
-          make your own memes
+          Make your own memes
         </h2>
         <UploadForm />
       </div>
