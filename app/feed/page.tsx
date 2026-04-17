@@ -58,8 +58,8 @@ export default async function FeedPage() {
 
   const navLinkStyle = {
     padding: "0.75rem 1.5rem",
-    backgroundColor: "#fff",
-    color: "#000",
+    backgroundColor: "var(--color-accent-purple)",
+    color: "#fff",
     borderRadius: "100px",
     textDecoration: "none",
     fontSize: "0.9rem",
@@ -110,7 +110,7 @@ export default async function FeedPage() {
             transform: "translateX(-50%)",
             letterSpacing: "-0.02em",
             fontFamily: "var(--font-display)",
-            color: "#a78bfa"
+            color: "#fff"
           }}>
             feed
           </h1>
@@ -126,7 +126,7 @@ export default async function FeedPage() {
 
         <div style={{ textAlign: "center", marginTop: "4rem" }}>
           <h1 style={{ fontSize: "2.5rem", fontWeight: "800", marginBottom: "1rem", fontFamily: "var(--font-display)" }}>You've seen everything!</h1>
-          <p style={{ color: "#888", fontSize: "1.2rem" }}>Check back later for more captions.</p>
+          <p style={{ color: "#fff", fontSize: "1.2rem" }}>Check back later for more captions.</p>
           <Link href="/dashboard" style={{ ...navLinkStyle, display: "inline-block", marginTop: "2rem" }}>
             Go to My Gallery
           </Link>
@@ -171,7 +171,7 @@ export default async function FeedPage() {
           transform: "translateX(-50%)",
           letterSpacing: "-0.02em",
           fontFamily: "var(--font-display)",
-          color: "#a78bfa"
+          color: "#fff"
         }}>
           feed
         </h1>
@@ -222,7 +222,7 @@ export default async function FeedPage() {
             lineHeight: "1.3",
             letterSpacing: "-0.01em",
             fontFamily: "var(--font-display)",
-            color: "#2dd4bf"
+            color: "#fff"
           }}>
             {caption.content}
           </p>
@@ -234,7 +234,7 @@ export default async function FeedPage() {
                 style={{
                   padding: "1rem 2rem",
                   backgroundColor: "#a78bfa",
-                  color: "#000",
+                  color: "#fff",
                   border: "none",
                   borderRadius: "100px",
                   cursor: "pointer",

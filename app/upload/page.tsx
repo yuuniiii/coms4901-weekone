@@ -30,8 +30,8 @@ export default async function UploadPage() {
 
   const navLinkStyle = {
     padding: "0.75rem 1.5rem",
-    backgroundColor: "#fff",
-    color: "#000",
+    backgroundColor: "var(--color-accent-teal)",
+    color: "#fff",
     borderRadius: "100px",
     textDecoration: "none",
     fontSize: "0.9rem",
@@ -81,7 +81,7 @@ export default async function UploadPage() {
           transform: "translateX(-50%)",
           letterSpacing: "-0.02em",
           fontFamily: "var(--font-display)",
-          color: "#2dd4bf"
+          color: "#fff"
         }}>
           upload
         </h1>

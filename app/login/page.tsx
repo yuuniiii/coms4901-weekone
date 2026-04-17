@@ -29,7 +29,7 @@ export default function LoginPage() {
       <h1 style={{ 
         fontFamily: "var(--font-display)", 
         fontSize: "3rem",
-        color: "#fb7185"
+        color: "#fff"
       }}>
         Login
       </h1>
@@ -37,8 +37,8 @@ export default function LoginPage() {
         onClick={signInWithGoogle}
         style={{
           padding: "1rem 2.5rem",
-          backgroundColor: "#fff",
-          color: "#000",
+          backgroundColor: "var(--color-accent-coral)",
+          color: "#fff",
           borderRadius: "100px",
           border: "none",
           fontWeight: "700",

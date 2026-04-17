@@ -83,7 +83,7 @@ export default function UploadForm() {
               marginBottom: "1rem", 
               fontWeight: "700",
               fontSize: "1.1rem",
-              color: "#aaa"
+              color: "#fff"
             }}
           >
             Select Image
@@ -124,12 +124,12 @@ export default function UploadForm() {
 
         {error && (
           <div style={{ 
-            color: "#fb7185", 
+            color: "#fff", 
             marginBottom: "1.5rem", 
             padding: "1rem", 
-            backgroundColor: "rgba(251, 113, 133, 0.1)", 
+            backgroundColor: "rgba(251, 113, 133, 0.2)", 
             borderRadius: "12px", 
-            border: "1px solid rgba(251, 113, 133, 0.2)",
+            border: "1px solid rgba(251, 113, 133, 0.4)",
             fontWeight: "600"
           }}>
             {error}
@@ -143,7 +143,7 @@ export default function UploadForm() {
             width: "100%",
             padding: "1.25rem 2rem",
             backgroundColor: loading || !file ? "#333" : "#2dd4bf",
-            color: loading || !file ? "#666" : "#000",
+            color: loading || !file ? "#666" : "#fff",
             border: "none",
             borderRadius: "100px",
             cursor: loading || !file ? "not-allowed" : "pointer",
@@ -183,7 +183,7 @@ export default function UploadForm() {
                   lineHeight: "1.5",
                   fontSize: "1.2rem",
                   fontWeight: "700",
-                  color: "#fbbf24",
+                  color: "#fff",
                   fontFamily: "var(--font-display)",
                   boxShadow: "0 0 15px rgba(251, 191, 36, 0.1)"
                 }}

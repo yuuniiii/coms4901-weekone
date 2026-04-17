@@ -66,8 +66,8 @@ export default async function DashboardPage() {
             href="/feed"
             style={{
               padding: "0.75rem 1.5rem",
-              backgroundColor: "#a78bfa",
-              color: "#000",
+              backgroundColor: "#cf0847",
+              color: "#fff",
               borderRadius: "100px",
               textDecoration: "none",
               fontSize: "0.9rem",
@@ -76,14 +76,14 @@ export default async function DashboardPage() {
               boxShadow: "0 0 15px rgba(167, 139, 250, 0.4)",
             }}
           >
-            browse public gallery
+            Browse Public Gallery
           </Link>
           <Link
             href="/upload"
             style={{
               padding: "0.75rem 1.5rem",
-              backgroundColor: "#2dd4bf",
-              color: "#000",
+              backgroundColor: "#841c94",
+              color: "#fff",
               borderRadius: "100px",
               textDecoration: "none",
               fontSize: "0.9rem",
@@ -92,13 +92,13 @@ export default async function DashboardPage() {
               boxShadow: "0 0 15px rgba(45, 212, 191, 0.4)",
             }}
           >
-            make your own memes
+            Make Your Own Memes
           </Link>
         </div>
 
         <h1 style={{ 
           margin: 0, 
-          fontSize: "1.5rem", 
+          fontSize: "2rem", 
           fontWeight: "800", 
           position: "absolute", 
           left: "50%", 
@@ -107,7 +107,7 @@ export default async function DashboardPage() {
           fontFamily: "var(--font-display)",
           color: "#fff"
         }}>
-          my humor gallery
+          My Humor Gallery
         </h1>
 
         <div style={{ flex: 1, display: "flex", justifyContent: "flex-end" }}>
@@ -134,18 +134,18 @@ export default async function DashboardPage() {
 
       {upvotedItems.length === 0 ? (
         <div style={{ marginTop: "2rem", textAlign: "center" }}>
-          <p style={{ fontSize: "1.1rem", color: "#888" }}>
+          <p style={{ fontSize: "1.1rem", color: "#fff" }}>
             seems like you haven’t found anything funny.{" "}
             <Link
               href="/feed"
-              style={{ color: "#a78bfa", fontWeight: "700", textDecoration: "underline" }}
+              style={{ color: "#fff", fontWeight: "700", textDecoration: "underline" }}
             >
               browse the public gallery
             </Link>{" "}
             or{" "}
             <Link
               href="/upload"
-              style={{ color: "#2dd4bf", fontWeight: "700", textDecoration: "underline" }}
+              style={{ color: "#fff", fontWeight: "700", textDecoration: "underline" }}
             >
               make your own
             </Link>
@@ -192,7 +192,7 @@ export default async function DashboardPage() {
                   margin: 0, 
                   fontSize: "1.1rem", 
                   fontWeight: "700", 
-                  color: "#fbbf24", 
+                  color: "#fff", 
                   lineHeight: "1.4",
                   fontFamily: "var(--font-display)"
                 }}>

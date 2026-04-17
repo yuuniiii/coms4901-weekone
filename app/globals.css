@@ -14,9 +14,9 @@
   --color-accent-amber: #fbbf24;
   --color-accent-blue: #60a5fa;
 
-  --color-text-primary: #f0f0f0;
-  --color-text-secondary: #888888;
-  --color-text-muted: #444444;
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #ffffff;
+  --color-text-muted: #ffffff;
 
   /* Preserve existing layout vars if any were present */
 }

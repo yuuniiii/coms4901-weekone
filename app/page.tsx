@@ -23,8 +23,7 @@ export default function Home() {
         gap: "2.5rem",
         textAlign: "center",
         padding: "2rem",
-        backgroundColor: "#000",
-        color: "#fff",
+        backgroundColor: "#000000",
       }}
     >
       <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
@@ -34,17 +33,14 @@ export default function Home() {
           letterSpacing: "-0.04em", 
           margin: 0,
           lineHeight: "1.1",
-          fontFamily: "var(--font-display)",
-          background: "linear-gradient(to right, #a78bfa, #2dd4bf, #fb7185)",
-          WebkitBackgroundClip: "text",
-          WebkitTextFillColor: "transparent",
+          color: "#ffffff"
         }}>
           your favorite memes
         </h1>
         <p style={{ 
           fontSize: "clamp(1.25rem, 4vw, 1.75rem)", 
           fontWeight: "700", 
-          color: "#888", 
+          color: "#b1b1b1", 
           margin: 0 
         }}>
           in one place.
@@ -55,23 +51,23 @@ export default function Home() {
         onClick={signInWithGoogle}
         style={{
           padding: "1.25rem 3rem",
-          backgroundColor: "#fff",
-          color: "#000",
+          backgroundColor: "#d54368",
+          color: "#fff",
           borderRadius: "100px",
           cursor: "pointer",
           border: "none",
           fontSize: "1.25rem",
           fontWeight: "700",
           transition: "all 0.2s ease",
-          boxShadow: "0 0 20px rgba(167, 139, 250, 0.3)",
+          boxShadow: "0 10px 20px rgba(0,0,0,0.1)",
         }}
         onMouseEnter={(e) => {
           e.currentTarget.style.transform = "translateY(-2px)";
-          e.currentTarget.style.boxShadow = "0 0 30px rgba(45, 212, 191, 0.5)";
+          e.currentTarget.style.boxShadow = "0 15px 30px rgba(0,0,0,0.15)";
         }}
         onMouseLeave={(e) => {
           e.currentTarget.style.transform = "translateY(0)";
-          e.currentTarget.style.boxShadow = "0 0 20px rgba(167, 139, 250, 0.3)";
+          e.currentTarget.style.boxShadow = "0 10px 20px rgba(0,0,0,0.1)";
         }}
       >
         Sign in with Google
