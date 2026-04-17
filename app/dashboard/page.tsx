@@ -82,7 +82,7 @@ export default async function DashboardPage() {
             href="/upload"
             style={{
               padding: "0.75rem 1.5rem",
-              backgroundColor: "#841c94",
+              backgroundColor: "#cf0847",
               color: "#fff",
               borderRadius: "100px",
               textDecoration: "none",
