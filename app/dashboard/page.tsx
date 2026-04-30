@@ -29,6 +29,7 @@ export default async function DashboardPage() {
     `)
     .eq("profile_id", session.user.id)
     .eq("vote_value", 1)
+    .order("modified_datetime_utc", { ascending: false })
 
   if (error) {
     console.error("Error fetching upvoted captions:", error)
