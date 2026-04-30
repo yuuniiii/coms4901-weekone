@@ -2,6 +2,7 @@ import { redirect } from "next/navigation"
 import { createClient } from "@/lib/supabaseServerClient"
 import Link from "next/link"
 import { logout } from "@/app/actions/logout"
+import DashboardGrid from "./DashboardGrid"
 
 export default async function DashboardPage() {
   const supabase = await createClient()
@@ -152,57 +153,7 @@ export default async function DashboardPage() {
           </p>
         </div>
       ) : (
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
-            gap: "2.5rem",
-            marginTop: "2rem",
-          }}
-        >
-          {upvotedItems.map((item: any) => (
-            <div
-              key={item.id}
-              style={{
-                backgroundColor: "#0d0d0d",
-                borderRadius: "20px",
-                overflow: "hidden",
-                border: "1px solid #222",
-                display: "flex",
-                flexDirection: "column",
-                boxShadow: "0 0 20px rgba(0,0,0,0.5)",
-                transition: "transform 0.2s ease",
-              }}
-            >
-              {item.image?.url && (
-                <div style={{ width: "100%", aspectRatio: "1/1", position: "relative" }}>
-                  <img
-                    src={item.image.url}
-                    alt="Humor item"
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                    }}
-                  />
-                </div>
-              )}
-              <div style={{ padding: "1.5rem", textAlign: "center" }}>
-                <p style={{ 
-                  margin: 0, 
-                  fontSize: "1.1rem", 
-                  fontWeight: "700", 
-                  color: "#fff", 
-                  lineHeight: "1.4",
-                  letterSpacing: "0.08em",
-                  fontFamily: "var(--font-display)"
-                }}>
-                  {item.content}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
+        <DashboardGrid items={upvotedItems} />
       )}
     </main>
   )
